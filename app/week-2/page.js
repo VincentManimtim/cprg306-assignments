@@ -5,7 +5,6 @@ import MyInfo from "./student-info";
 
 export default function MySecondPage(){
      
-
     return(
 
     <main>
