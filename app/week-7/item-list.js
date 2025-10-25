@@ -2,24 +2,20 @@
 
 import { useState } from "react";
 import Item from "./item";
-import items from "./items.json";
 
-export default function ItemList() {
-
+export default function ItemList({ items }) {
   const [sortBy, setSortBy] = useState("name");
 
-  let itemArray = items.map((item) => ({ ...item }));
+  let itemArray = [...items].map((item) => ({ ...item }));
 
   itemArray.sort((a, b) => {
     if (sortBy === "name") {
-
       const nameA = a.name.toUpperCase();
       const nameB = b.name.toUpperCase();
       if (nameA < nameB) return -1;
       if (nameA > nameB) return 1;
       return 0;
     } else if (sortBy === "category") {
-
       const catA = a.category.toUpperCase();
       const catB = b.category.toUpperCase();
       if (catA < catB) return -1;
@@ -35,7 +31,6 @@ export default function ItemList() {
   return (
     <section className="p-4">
       <h2 className="text-xl font-bold mb-4">Item List</h2>
-
       <div className="flex gap-4 mb-6">
         <button
           onClick={() => setSortBy("name")}
@@ -45,7 +40,6 @@ export default function ItemList() {
         >
           Sort by Name
         </button>
-
         <button
           onClick={() => setSortBy("category")}
           className={`px-4 py-2 rounded-lg ${
@@ -55,7 +49,6 @@ export default function ItemList() {
           Sort by Category
         </button>
       </div>
-
       <ul>
         {itemArray.map((item) => (
           <Item
